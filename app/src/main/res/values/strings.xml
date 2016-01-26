@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">TicTacToe</string>
+    <string name="action_settings">Settings</string>
+    <string name="player1">Player 1</string>
+    <string name="player2">Player 2</string>
+    <string name="title_activity_play">PlayActivity</string>
+    <string name="title_activity_high_score">HighScore</string>
+    <string name="drawtext">It is a draw, please reset and try again</string>
+    <string name="wintext">%1$s is the winner!</string>
+    <string name="phonewin">The phone won against you!</string>
+    <string name="statistics">%1$s wins: %2$d \n%3$s wins: %4$d</string>
+    <string name="turn">It is %1$ss turn</string>
+    <string name="highscore">Highscore held by: \n\n%1$s  </string>
+
+</resources>
