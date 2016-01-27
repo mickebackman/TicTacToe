@@ -1,5 +1,6 @@
 package se.mikaelbackman.tictactoe.tictactoe;
 
+
 import java.util.Random;
 
 public class PhoneMove {

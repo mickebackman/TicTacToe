@@ -18,6 +18,7 @@ public class PlayActivity extends AppCompatActivity {
     public GameState[][] gameboard;
     public boolean player1sturn;
     public boolean phonesturn = false;
+    public boolean haswinner = false;
     public ImageButton[] squares;
     public TextView infotext, statistics;
     public DataSaver ds;
@@ -118,13 +119,13 @@ public class PlayActivity extends AppCompatActivity {
             square.setClickable(false);
             square.setEnabled(false);
         }
-        // Annpunce the winner
+        // Announce the winner
         if (state == GameState.X){
             infotext.setText(String.format(resources.getString(R.string.wintext), player1name));
         }
         if (state == GameState.O){
-            if (versusphone) infotext.setText(R.string.phonewin);
-            infotext.setText(String.format(resources.getString(R.string.wintext), player2name));
+            if (versusphone){ infotext.setText(R.string.phonewin);}
+            else {infotext.setText(String.format(resources.getString(R.string.wintext), player2name));}
         }
 
 
@@ -143,7 +144,7 @@ public class PlayActivity extends AppCompatActivity {
             infotext.setText(String.format(resources.getString(R.string.turn), player2name));
             checkWinner(x, y, GameState.X);
             // If the game is against the phone the PhoneMove class will decide a move then call this method again.
-            if(versusphone){
+            if(versusphone && !(counter==(n*n))){
                 phonesturn = true;
                 int[] move = makePhoneMove();
                 changePicture(squares[move[0]], move[1], move[2]);
@@ -158,13 +159,14 @@ public class PlayActivity extends AppCompatActivity {
             infotext.setText(String.format(resources.getString(R.string.turn), player1name));
             checkWinner(x, y, GameState.O);
         }
+
         // If the game is against the phone the phone will make his move
-        if(phonesturn){
+        if(phonesturn && !haswinner && !(counter == (n*n))){
             square.setImageResource(R.drawable.ring);
             gameboard[x][y] = GameState.O;
             player1sturn = true;
-            infotext.setText(String.format(resources.getString(R.string.turn), player1name));
             phonesturn = false;
+            infotext.setText(String.format(resources.getString(R.string.turn), player1name));
             checkWinner(x, y, GameState.O);
         }
         square.setClickable(false);
@@ -192,9 +194,13 @@ public class PlayActivity extends AppCompatActivity {
             square.setEnabled(true);
             square.setImageResource(R.drawable.square);
         }
+        haswinner = false;
+        phonesturn = false;
+        player1sturn = true;
         if (player1sturn) infotext.setText(String.format(resources.getString(R.string.turn), player1name));
         else infotext.setText(String.format(resources.getString(R.string.turn), player2name));
         counter = 0;
+
     }
 
     // Algorithm for checking if there is an winner. A bit redudant code still exists, and can be slimmed down.
@@ -205,7 +211,7 @@ public class PlayActivity extends AppCompatActivity {
         //If the state is None then X/O will be set on the corresponding button.
         if ((gameboard[x][y] == GameState.None) || (gameboard[x][y] == null)) { gameboard[x][y] = gamestate;}
         counter++;
-        boolean haswinner = false;
+        haswinner = false;
 
         //Check row, if temporary amount in row is equal to n we have a winner.
         int tempinrow = 0;
@@ -217,6 +223,7 @@ public class PlayActivity extends AppCompatActivity {
                     else ds.saveData(player2name);
                     statistics.setText(String.format(resources.getString(R.string.statistics), player1name, ds.loadScore(player1name),
                             player2name, ds.loadScore(player2name)));
+                    infotext.setText("");
                     winner(gamestate);
                     haswinner = true;
                 }
