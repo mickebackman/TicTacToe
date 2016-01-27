@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:screenOrientation="portrait"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="se.mikaelbackman.tictactoe.tictactoe.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <EditText
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:id="@+id/player1textfield"
+        android:hint="@string/player1"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textSize="25sp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/textcontainer"
+       />
+
+    <ToggleButton
+        android:layout_width="270dp"
+        android:layout_height="70dp"
+        android:id="@+id/aibutton"
+        android:textOff=""
+        android:textOn=""
+        android:background="@drawable/togglebutton"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center_horizontal" />
+
+
+    <EditText
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:id="@+id/player2textfield"
+        android:hint="@string/player2"
+        android:gravity="center"
+        android:singleLine="true"
+        android:layout_marginBottom="20dp"
+        android:textSize="25sp"
+        android:background="@drawable/textcontainer" />
+
+    <ImageButton
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="270dp"
+        android:layout_height="70dp"
+        android:id="@+id/playButton"
+        android:background="@drawable/playbutton"
+        android:onClick="playGame"
+        android:scaleType="fitXY"
+        android:textAllCaps="false"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center_horizontal" />
+
+    <ImageButton
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="270dp"
+        android:layout_height="70dp"
+        android:id="@+id/highscoreButton"
+        android:background="@drawable/highscorebutton"
+        android:onClick="highScore"
+        android:scaleType="fitXY" />
+
+
+</LinearLayout>
